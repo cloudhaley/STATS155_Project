@@ -1,5 +1,6 @@
 ---
 title: "data_explore"
+author: "Haley Vien, Maria Aerrola, Tara Mercene, Cathlyn Liang"
 output: 
   html_document:
     keep_md: yes
@@ -10,24 +11,14 @@ output:
 Drop your plots below :)
 
 
-<<<<<<< HEAD
-
-
-
-
-=======
-<<<<<<< HEAD
 ```{r, message=FALSE, warning=FALSE}
 library(fivethirtyeight)
 library(ggplot2)
-<<<<<<< HEAD
 data("bachelorette")
-=======
 library(broom)
 library(moderndive)
 library(tidyverse)
 library(openintro)
->>>>>>> 1e79dfe74301fa5f1d25c7633f315b32867a7cf6
 ```
 
 Maria's graph
@@ -37,9 +28,17 @@ ggplot(data = hiphop_cand_lyrics)+
   
 ```
 
-=======
 
-<<<<<<< HEAD
+Haley's graph
+
+```{r}
+hiphop_cand_lyrics %>% 
+  ggplot() +
+  geom_jitter(aes(x=sentiment, y=candidate, color = candidate))
+```
+
+
+
 ```{r}
 ggplot(data = bachelorette)+
   geom_boxplot(aes(x = show, y = season, fill = show))
@@ -53,20 +52,4 @@ ggplot(data = bachelorette)+
 
 
 
-
-
-
-=======
-<<<<<<< HEAD
-
-=======
-
-Haley's graph
-
-```{r}
-hiphop_cand_lyrics %>% 
-  ggplot() +
-  geom_jitter(aes(x=sentiment, y=candidate, color = candidate))
-```
->>>>>>> 1e79dfe74301fa5f1d25c7633f315b32867a7cf6
 
