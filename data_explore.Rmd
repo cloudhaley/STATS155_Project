@@ -38,6 +38,7 @@ hiphop_cand_lyrics %>%
 ```
 
 
+Tara and Cathlyn's graphs
 
 ```{r}
 ggplot(data = bachelorette)+
