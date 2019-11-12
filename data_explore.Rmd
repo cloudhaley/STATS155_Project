@@ -20,6 +20,7 @@ Drop your plots below :)
 ```{r}
 library(fivethirtyeight)
 library(ggplot2)
+data("bachelorette")
 ```
 
 ```{r}
@@ -29,7 +30,21 @@ ggplot(data = hiphop_cand_lyrics)+
 ```
 
 =======
->>>>>>> d23734a0811c6c8ec9ed0ee0fce7ce296fa0e314
 
-hello?
->>>>>>> 1a95bc10129b1044d97e5fc4ca5786244843ee28
+```{r}
+ggplot(data = bachelorette)+
+  geom_boxplot(aes(x = show, y = season, fill = show))
+```
+
+```{r}
+ggplot(data = bachelorette)+
+  geom_histogram(aes(x = season), bins = 50)
+```
+
+
+
+
+
+
+
+
