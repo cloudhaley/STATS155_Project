@@ -3,7 +3,9 @@ title: "data_explore"
 output: 
   html_document:
     keep_md: yes
+    df_print: paged
 
 ---
 
 Drop your plots below :)
+
