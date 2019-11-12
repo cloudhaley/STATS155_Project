@@ -1,0 +1,6 @@
+---
+title: "Checkpoint 1"
+output: html_document
+---
+
+Drop your plots below :)
