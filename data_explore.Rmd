@@ -9,6 +9,7 @@ output:
 
 Drop your plots below :)
 
+
 <<<<<<< HEAD
 ```{r}
 library(fivethirtyeight)
