@@ -3,33 +3,22 @@ title: "data_explore"
 output: 
   html_document:
     keep_md: yes
-    df_print: paged
 
 ---
 
 Drop your plots below :)
 
 
-<<<<<<< HEAD
-
-
-
-
-=======
-<<<<<<< HEAD
-```{r}
+```r
 library(fivethirtyeight)
 library(ggplot2)
 ```
 
-```{r}
+
+```r
 ggplot(data = hiphop_cand_lyrics)+
   geom_boxplot(aes(x = candidate, y = album_release_date))
-  
 ```
 
-=======
->>>>>>> d23734a0811c6c8ec9ed0ee0fce7ce296fa0e314
+![](data_explore_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
-hello?
->>>>>>> 1a95bc10129b1044d97e5fc4ca5786244843ee28
