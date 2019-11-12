@@ -11,6 +11,12 @@ Drop your plots below :)
 
 
 <<<<<<< HEAD
+
+
+
+
+=======
+<<<<<<< HEAD
 ```{r}
 library(fivethirtyeight)
 library(ggplot2)
@@ -24,4 +30,9 @@ ggplot(data = hiphop_cand_lyrics)+
 
 =======
 
+<<<<<<< HEAD
 
+=======
+hello?
+>>>>>>> 1a95bc10129b1044d97e5fc4ca5786244843ee28
+>>>>>>> f805c82ba6eb91018a222c37fb0c9ac6c9c0159c
