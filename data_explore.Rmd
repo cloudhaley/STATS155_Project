@@ -7,3 +7,15 @@ output:
 ---
 
 Drop your plots below :)
+
+```{r}
+library(fivethirtyeight)
+library(ggplot2)
+```
+
+```{r}
+ggplot(data = hiphop_cand_lyrics)+
+  geom_boxplot(aes(x = candidate, y = album_release_date))
+  
+```
+
