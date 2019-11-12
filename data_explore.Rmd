@@ -17,12 +17,20 @@ Drop your plots below :)
 
 =======
 <<<<<<< HEAD
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(fivethirtyeight)
 library(ggplot2)
+<<<<<<< HEAD
 data("bachelorette")
+=======
+library(broom)
+library(moderndive)
+library(tidyverse)
+library(openintro)
+>>>>>>> 1e79dfe74301fa5f1d25c7633f315b32867a7cf6
 ```
 
+Maria's graph
 ```{r}
 ggplot(data = hiphop_cand_lyrics)+
   geom_boxplot(aes(x = candidate, y = album_release_date))
@@ -31,6 +39,7 @@ ggplot(data = hiphop_cand_lyrics)+
 
 =======
 
+<<<<<<< HEAD
 ```{r}
 ggplot(data = bachelorette)+
   geom_boxplot(aes(x = show, y = season, fill = show))
@@ -47,4 +56,17 @@ ggplot(data = bachelorette)+
 
 
 
+=======
+<<<<<<< HEAD
+
+=======
+
+Haley's graph
+
+```{r}
+hiphop_cand_lyrics %>% 
+  ggplot() +
+  geom_jitter(aes(x=sentiment, y=candidate, color = candidate))
+```
+>>>>>>> 1e79dfe74301fa5f1d25c7633f315b32867a7cf6
 
