@@ -15,6 +15,7 @@ Drop your plots below :)
 library(fivethirtyeight)
 library(ggplot2)
 data("bachelorette")
+data("hiphop_cand_lyrics")
 library(broom)
 library(moderndive)
 library(tidyverse)
@@ -34,7 +35,7 @@ Haley's graph
 ```{r}
 hiphop_cand_lyrics %>% 
   ggplot() +
-  geom_jitter(aes(x=sentiment, y=candidate, color = candidate))
+  geom_jitter(aes(x=candidate, y=sentiment, color = candidate))
 ```
 
 
