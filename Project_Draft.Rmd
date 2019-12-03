@@ -1,0 +1,18 @@
+---
+title: "Project Draft"
+author: "Haley Vien"
+date: "12/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(fivethirtyeight)
+library(ggplot2)
+data("hiphop_cand_lyrics")
+library(broom)
+library(moderndive)
+library(tidyverse)
+library(openintro)
+```
+
+
