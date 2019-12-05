@@ -18,11 +18,31 @@ library(ggridges)
 
 #Research Question
 
+```{r}
+hiphop_hcdt <- hiphop_cand_lyrics %>% 
+  filter(candidate %in% c("Hillary Clinton", "Donald Trump"))
+```
+
+```{r}
+hiphop_hc <- hiphop_cand_lyrics %>% 
+  filter(candidate %in% c("Hillary Clinton"))
+```
+
+```{r}
+hiphop_dt <- hiphop_cand_lyrics %>% 
+  filter(candidate %in% c("Donald Trump"))
+```
+
 When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between theme and sentiment differ between the two and does that change over time?
 
 Our response variable is sentiment while our explanatory variable is theme. 
 
 ```{r}
-ggplot(data = hiphop_cand_lyrics) +
+ggplot(data = hiphop_hc) +
+  geom_density_ridges(aes(x = album_release_date, y = sentiment, fill= sentiment)) 
+```
+
+```{r}
+ggplot(data = hiphop_dt) +
   geom_density_ridges(aes(x = album_release_date, y = sentiment, fill= sentiment)) 
 ```

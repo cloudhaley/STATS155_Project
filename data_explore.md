@@ -16,6 +16,10 @@ Drop your plots below :)
 library(fivethirtyeight)
 library(ggplot2)
 data("bachelorette")
+<<<<<<< HEAD
+=======
+data("hiphop_cand_lyrics")
+>>>>>>> bfc0ff0f3fcdc014e059633ce9f7e8948a4b7fe8
 library(broom)
 library(moderndive)
 library(tidyverse)
@@ -38,12 +42,20 @@ Haley's graph
 ```r
 hiphop_cand_lyrics %>% 
   ggplot() +
+<<<<<<< HEAD
   geom_jitter(aes(x=sentiment, y=candidate, color = candidate))
+=======
+  geom_jitter(aes(x=candidate, y=sentiment, color = candidate))
+>>>>>>> bfc0ff0f3fcdc014e059633ce9f7e8948a4b7fe8
 ```
 
 ![](data_explore_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 
+<<<<<<< HEAD
+=======
+Tara and Cathlyn's graphs
+>>>>>>> bfc0ff0f3fcdc014e059633ce9f7e8948a4b7fe8
 
 
 ```r
