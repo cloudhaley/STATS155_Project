@@ -13,6 +13,7 @@ library(broom)
 library(moderndive)
 library(tidyverse)
 library(openintro)
+library(ggridges)
 ```
 
 #Research Question
@@ -20,3 +21,8 @@ library(openintro)
 When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between theme and sentiment differ between the two and does that change over time?
 
 Our response variable is sentiment while our explanatory variable is theme. 
+
+```{r}
+ggplot(data = hiphop_cand_lyrics) +
+  geom_density_ridges(aes(x = album_release_date, y = sentiment, fill= sentiment)) 
+```
