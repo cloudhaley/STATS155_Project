@@ -48,3 +48,9 @@ ggplot(data = hiphop_dt) +
   geom_density_ridges(aes(x = album_release_date, y = sentiment, fill= sentiment)) +
   ggtitle("Donald Trump")
 ```
+
+```{r}
+ggplot(data = hiphop_hcdt) + 
+  geom_bar(aes(x = sentiment, fill = theme)) +
+  facet_wrap(vars(candidate))
+```
