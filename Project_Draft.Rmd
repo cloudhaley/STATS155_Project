@@ -65,13 +65,18 @@ ggplot(data = hiphop_hcdt)+
 
 ```
 
+
 The above graph showcases how the *sentiment* towards Donald Trump and Hillary Clinton have changed over time in reference to the *album_release_date* of songs that reference them.
 
 Between 2010 and 2020, the negative *sentiment* towards Donald Trump drastically increases and even peaks at around 2016, right around when he was running for presidency. For Clinton, negative references to her in hiphop songs suddenly increased in 2005 and peaked right before 2010, then it linearly decreased, almost having no negative references in 2016. 
 
 However, when looking at the positive *sentiment*, positive references to Trump peak a few years before 2015 and then decline. However, Clinton begins to have more positive references begining around 2005 and this peaks around 2010 and consistently stays at that peak until around 2016.  
 
+<<<<<<< HEAD
+
 # Fitting models 
+=======
+>>>>>>> dfbbe21b640520b1105399401224dbeec000d55c
 
 ```{r}
 glm.cand <- glm(factor(sentiment) ~ candidate,
