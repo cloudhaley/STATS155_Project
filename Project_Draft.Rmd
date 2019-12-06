@@ -54,3 +54,27 @@ ggplot(data = hiphop_hcdt) +
   geom_bar(aes(x = sentiment, fill = theme)) +
   facet_wrap(vars(candidate))
 ```
+
+```{r}
+ggplot(data = hiphop_hcdt)+
+   geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5)
+
+```
+
+```{r}
+glm.cand <- glm(factor(sentiment) ~ candidate,
+            data = hiphop_hcdt,
+           family = binomial(link = "logit"))
+
+tidy(glm.cs)
+```
+
+
+```{r}
+glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
+            data = hiphop_hcdt,
+           family = binomial(link = "logit"))
+
+tidy(glm.cs)
+```
+
