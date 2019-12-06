@@ -20,6 +20,8 @@ library(ggridges)
 
 The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* package. This data represents when hiphop songs referenced POTUS candidates in 2016. There are 377 rows of data and 8 variables. The 8 variables are the *candidate* referenced, the *song* name, the *artist*, the *sentiment* of the lyric, the *theme* of the lyric, the *album_release_date*, the *line* referencing the candidate, and the *url* to the song. This data was collected from [Genius](https://genius.com/).
 
+Note: For themes, one of the values is NA which represents misc. themes.
+
 #Research Question
 
 When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
@@ -49,7 +51,11 @@ ggplot(data = hiphop_hcdt) +
   facet_wrap(vars(candidate))
 ```
 
-The graph above shows the sentiment of the songs that mention Donald Trump or Hillary Clinton and is filled with the theme of the mentioned lyric.
+The graph above shows the sentiment of the songs that mention Donald Trump or Hillary Clinton and is filled with the theme of the mentioned lyric. 
+
+Interestingly enough, when analyzing the *positive* bar for Donald Trump, most of the lyrics that mention him in a *positive* sentiment are related to Trump's hotel and money. The amount of times artists refer to these 2 themes almost quadruples the amount of times Trump is referred to negatively. When looking at the *negative* bar, most of the negative references are related to the political theme. 
+
+In comparison to Donald Trump, Hillary Clinton has far less references in hiphop songs in total. Interestingly enough, for the *positive* and *neutral* bars, the theme that is most prevalent is personal, however in the *negative* column, the most prevalent theme is political. Even though there are slight differences, I thought it was interesting that Clinton in general had more references to the sexual theme than Trump. 
 
 ```{r}
 ggplot(data = hiphop_hcdt)+
