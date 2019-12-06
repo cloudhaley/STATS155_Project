@@ -66,7 +66,7 @@ glm.cand <- glm(factor(sentiment) ~ candidate,
             data = hiphop_hcdt,
            family = binomial(link = "logit"))
 
-tidy(glm.cs)
+tidy(glm.cand)
 ```
 
 
@@ -75,6 +75,6 @@ glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
             data = hiphop_hcdt,
            family = binomial(link = "logit"))
 
-tidy(glm.cs)
+tidy(glm.cand.date)
 ```
 
