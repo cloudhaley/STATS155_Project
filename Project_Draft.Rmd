@@ -16,17 +16,19 @@ library(openintro)
 library(ggridges)
 ```
 
-#The Data
+# The Data
 
 The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* package. This data represents when hiphop songs referenced POTUS candidates in 2016. There are 377 rows of data and 8 variables. The 8 variables are the *candidate* referenced, the *song* name, the *artist*, the *sentiment* of the lyric, the *theme* of the lyric, the *album_release_date*, the *line* referencing the candidate, and the *url* to the song. This data was collected from [Genius](https://genius.com/).
 
 Note: For themes, one of the values is NA which represents misc. themes.
 
-#Research Question
+# Research Question
 
 When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
 
 Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
+
+# Graphing the Data
 
 ```{r}
 hiphop_hcdt <- hiphop_cand_lyrics %>% 
@@ -69,6 +71,8 @@ Between 2010 and 2020, the negative *sentiment* towards Donald Trump drastically
 
 However, when looking at the positive *sentiment*, positive references to Trump peak a few years before 2015 and then decline. However, Clinton begins to have more positive references begining around 2005 and this peaks around 2010 and consistently stays at that peak until around 2016.  
 
+# Fitting models 
+
 ```{r}
 glm.cand <- glm(factor(sentiment) ~ candidate,
             data = hiphop_hcdt,
@@ -85,4 +89,9 @@ glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
 
 tidy(glm.cand.date)
 ```
+
+# Confidence Intervals
+
+
+
 
