@@ -72,11 +72,7 @@ Between 2010 and 2020, the negative *sentiment* towards Donald Trump drastically
 
 However, when looking at the positive *sentiment*, positive references to Trump peak a few years before 2015 and then decline. However, Clinton begins to have more positive references begining around 2005 and this peaks around 2010 and consistently stays at that peak until around 2016.  
 
-<<<<<<< HEAD
-
 # Fitting models 
-=======
->>>>>>> dfbbe21b640520b1105399401224dbeec000d55c
 
 ```{r}
 glm.cand <- glm(factor(sentiment) ~ candidate,
