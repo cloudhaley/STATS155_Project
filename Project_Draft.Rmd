@@ -16,7 +16,15 @@ library(openintro)
 library(ggridges)
 ```
 
+#The Data
+
+The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* package. This data represents when hiphop songs referenced POTUS candidates in 2016. There are 377 rows of data and 8 variables. The 8 variables are the *candidate* referenced, the *song* name, the *artist*, the *sentiment* of the lyric, the *theme* of the lyric, the *album_release_date*, the *line* referencing the candidate, and the *url* to the song. This data was collected from [Genius](https://genius.com/).
+
 #Research Question
+
+When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time? 
+
+Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
 
 ```{r}
 hiphop_hcdt <- hiphop_cand_lyrics %>% 
@@ -33,9 +41,7 @@ hiphop_dt <- hiphop_cand_lyrics %>%
   filter(candidate %in% c("Donald Trump"))
 ```
 
-When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between theme and sentiment differ between the two and does that change over time?
 
-Our response variable is sentiment while our explanatory variable is theme. 
 
 ```{r}
 ggplot(data = hiphop_hcdt) + 
