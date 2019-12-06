@@ -22,7 +22,7 @@ The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* pac
 
 #Research Question
 
-When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time? 
+When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
 
 Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
 
@@ -48,6 +48,8 @@ ggplot(data = hiphop_hcdt) +
   geom_bar(aes(x = sentiment, fill = theme)) +
   facet_wrap(vars(candidate))
 ```
+
+The graph above shows the sentiment of the songs that mention Donald Trump or Hillary Clinton and is filled with the theme of the mentioned lyric.
 
 ```{r}
 ggplot(data = hiphop_hcdt)+
