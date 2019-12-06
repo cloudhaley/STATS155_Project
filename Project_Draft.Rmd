@@ -49,6 +49,7 @@ ggplot(data = hiphop_hcdt)+
 
 ```
 
+
 ```{r}
 glm.cand <- glm(factor(sentiment) ~ candidate,
             data = hiphop_hcdt,
