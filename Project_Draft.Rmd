@@ -82,6 +82,10 @@ glm.cand <- glm(factor(sentiment) ~ candidate,
 tidy(glm.cand)
 ```
 
+*Intercept*: Log-odds of positive being the sentiment for Donald Trump is 1.93.
+
+*candidateHillaryClinton*: difference in log-odds of positive being the sentiment between Donald Trump and Hillary Clinton 
+
 
 ```{r}
 glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
@@ -91,8 +95,32 @@ glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
 tidy(glm.cand.date)
 ```
 
-# Confidence Intervals
+*Intercept*: Log-odds of positive being the sentiment for Donald Trump is 120.63.
 
+*candidateHillaryClinton*: Difference in log-odds of positive being the sentiment between Hillary Clinton and Donald Trump. 
 
+*album_release_date*: Difference in log-odds of positive being the sentiment between Hillary Clinton and Donald Trump accounting for *album_release_date*.
 
+# Hypothesis testing or Confidence Intervals
 
+```{r}
+tidy(glm.cand) %>% 
+  mutate(lowerCI = estimate - 2*std.error,
+         upperCI = estimate + 2*std.error)
+
+```
+
+This tells us that the plausible range of values for the true difference in sentiment. Since it is between -1.73 and -0.57, the difference in sentiment between Donald Trump and Hillary Clinton appears to be fairly large. 
+
+```{r}
+tidy(glm.cand.date) %>% 
+  mutate(lowerCI = estimate - 2 * std.error,
+         upperCI = estimate + 2*std.error)
+```
+
+This tells us that the plausible range of values for the true difference in sentiment. Since it is between -0.1093439 and -0.0088, the difference in sentiment between Donald Trump and Hillary Clinton accounting for *album_release_date* appears to be even larger. 
+
+# Next steps
+(@) Summarize our results
+(@) Ask for help and attend office hours to fix mistakes
+(@) Schedule a time to meet to discuss presentation details
