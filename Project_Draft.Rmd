@@ -24,7 +24,7 @@ Note: For themes, one of the values is NA which represents misc. themes.
 
 # Research Question
 
-When looking at Hillary and Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
+When looking at Hillary Clinton and Donald Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
 
 Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
 
@@ -101,7 +101,7 @@ tidy(glm.cand.date)
 
 *album_release_date*: Difference in log-odds of positive being the sentiment between Hillary Clinton and Donald Trump accounting for *album_release_date*.
 
-# Hypothesis testing or Confidence Intervals
+# Confidence Intervals
 
 ```{r}
 tidy(glm.cand) %>% 
