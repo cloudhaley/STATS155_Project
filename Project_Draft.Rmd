@@ -32,8 +32,10 @@ Our response variable is sentiment while our explanatory variables are candidate
 
 ```{r}
 hiphop_hcdt <- hiphop_cand_lyrics %>% 
-  filter(candidate %in% c("Hillary Clinton", "Donald Trump"))
+  filter(candidate %in% c("Hillary Clinton", "Donald Trump")) %>% 
+  mutate(sentiment_negative = ifelse(sentiment == "negative", 1, 0))
 ```
+
 
 ```{r}
 hiphop_hc <- hiphop_cand_lyrics %>% 
@@ -44,8 +46,6 @@ hiphop_hc <- hiphop_cand_lyrics %>%
 hiphop_dt <- hiphop_cand_lyrics %>% 
   filter(candidate %in% c("Donald Trump"))
 ```
-
-
 
 ```{r}
 ggplot(data = hiphop_hcdt) + 
@@ -73,6 +73,12 @@ Between 2010 and 2020, the negative *sentiment* towards Donald Trump drastically
 However, when looking at the positive *sentiment*, positive references to Trump peak a few years before 2015 and then decline. However, Clinton begins to have more positive references begining around 2005 and this peaks around 2010 and consistently stays at that peak until around 2016.  
 
 # Fitting models 
+
+```{r}
+m1 <- glm(sentiment_negative ~ candidate, data = hiphop_hcdt, family = binomial)
+tidy(m1)
+```
+
 
 ```{r}
 glm.cand <- glm(factor(sentiment) ~ candidate,
