@@ -50,6 +50,18 @@ hiphop_dt <- hiphop_cand_lyrics %>%
   filter(candidate %in% c("Donald Trump"))
 ```
 
+```{r}
+ggplot(data = hiphop_hc) +
+  geom_bar(aes(x=sentiment, fill = sentiment)) +
+  ggtitle("Hillary Clinton Sentiment")
+```
+
+```{r}
+ggplot(data = hiphop_dt) +
+  geom_bar(aes(x=sentiment, fill = sentiment)) +
+  ggtitle("Donald Trump Sentiment")
+```
+
 ```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt) + 
   geom_bar(aes(x = sentiment, fill = theme)) +
