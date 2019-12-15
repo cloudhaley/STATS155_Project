@@ -101,12 +101,7 @@ However, when looking at the positive *sentiment*, positive references to Trump 
 
 # Fitting models 
 
-
-```{r, echo=FALSE}
-m1 <- glm(sentiment_negative ~ candidate, data = hiphop_hcdt, family = binomial)
-tidy(m1)
-```
-
+Note: *glm.cand* and *glm.cand.date* are our models that we will use to predict for negative *sentiment*. Neutral and positive *sentiment* are grouped together to make interpreting the model simpler. 
 
 
 ```{r, echo=FALSE}
@@ -120,8 +115,6 @@ tidy(glm.cand)
 *Intercept*: Log-odds of positive being the sentiment for Donald Trump is 1.93.
 
 *candidateHillaryClinton*: difference in log-odds of positive being the sentiment between Donald Trump and Hillary Clinton 
-
-
 
 
 ```{r, echo=FALSE}
