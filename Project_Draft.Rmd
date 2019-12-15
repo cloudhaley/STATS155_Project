@@ -112,9 +112,9 @@ glm.cand <- glm(sentiment_negative ~ candidate,
 tidy(glm.cand)
 ```
 
-*Intercept*: Log-odds of positive being the sentiment for Donald Trump is 1.93.
+*Intercept*: Log-odds of negative being the sentiment for Donald Trump is 1.93.
 
-*candidateHillaryClinton*: difference in log-odds of positive being the sentiment between Donald Trump and Hillary Clinton 
+*candidateHillaryClinton*: difference in log-odds of negative being the sentiment between Donald Trump and Hillary Clinton 
 
 
 ```{r, echo=FALSE}
@@ -125,11 +125,11 @@ glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date,
 tidy(glm.cand.date)
 ```
 
-*Intercept*: Log-odds of positive being the sentiment for Donald Trump is 120.63.
+*Intercept*: Log-odds of negative being the sentiment for Donald Trump is 120.63.
 
-*candidateHillaryClinton*: Difference in log-odds of positive being the sentiment between Hillary Clinton and Donald Trump. 
+*candidateHillaryClinton*: Difference in log-odds of negative being the sentiment between Hillary Clinton and Donald Trump. 
 
-*album_release_date*: Difference in log-odds of positive being the sentiment between Hillary Clinton and Donald Trump accounting for *album_release_date*.
+*album_release_date*: Difference in log-odds of negative being the sentiment between Hillary Clinton and Donald Trump accounting for *album_release_date*.
 
 # Confidence Intervals
 
