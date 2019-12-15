@@ -76,8 +76,14 @@ In comparison to Donald Trump, Hillary Clinton has far less references in hiphop
 
 ```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
-   geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5)
+   geom_density_ridges(aes(x = album_release_date,  y = sentiment), alpha = .5) +
+  ggtitle("Album Release Date v. Sentiment")
+```
 
+
+```{r, echo=FALSE}
+ggplot(data = hiphop_hcdt)+
+   geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5) +
 ```
 
 
