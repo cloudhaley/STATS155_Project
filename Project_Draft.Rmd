@@ -23,7 +23,7 @@ The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* pac
 
 Note: For themes, one of the values is NA which represents misc. themes.
 
-Note 2: The references were classified as negative, positive, and neutral by a group of FiveThirtyEight staffers who were interested in hip-hop and quantifying things. If there was a reference that obviously fit into one category, the lead researcher, Allison McCann, would classify it. Additionally, if there was a a trickier reference that was hard to decipher, three people, senior editor Chadwick Matlin, intern Setrige Crawford and McCann, would make the final decision after deliberation. 
+Note 2: The references were classified as negative, positive, and neutral by a group of FiveThirtyEight staffers who were interested in hip-hop and quantifying things. If there was a reference that obviously fit into one category, the lead researcher, Allison McCann, would classify it. Additionally, if there was a a trickier reference that was hard to decipher, three people, senior editor Chadwick Matlin, intern Setrige Crawford and McCann, would make the final decision after deliberation.
 
 # Research Question
 
@@ -32,6 +32,8 @@ When looking at Hillary Clinton and Donald Trump’s mentions in hip hop songs, 
 Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
 
 # Graphing the Data
+
+Note: *hiphop_hcdt* is *hiphop_cand_lyrics* but it has been filtered to only show the results of Donald Trumpy and Hillary Clinton and is the data we will be using from now on. For some of the graphs we also use *hiphop_hc* which is the original data filtered to only include Hillary Clinton's results and *hiphop_dt* does the same but filters for Donald Trumps' results. 
 
 ```{r, echo=FALSE}
 hiphop_hcdt <- hiphop_cand_lyrics %>% 
@@ -73,7 +75,7 @@ ggplot(data = hiphop_hcdt) +
 
 The graph above shows the sentiment of the songs that mention Donald Trump or Hillary Clinton and is filled with the theme of the mentioned lyric. 
 
-Interestingly enough, when analyzing the positive bar for Donald Trump, most of the lyrics that mention him in a positive *sentiment* are related to Trump's hotel and money. The amount of times artists refer to these 2 themes almost quadruples the amount of times Trump is referred to negatively. When looking at the negative bar, most of the negative references are related to the political theme. 
+Interestingly enough, when analyzing the positive bar for Donald Trump inside of this graph, most of the lyrics that mention him in a positive *sentiment* are related to Trump's hotel and money. The amount of times artists refer to these 2 themes almost quadruples the amount of times Trump is referred to negatively. When looking at the negative bar, most of the negative references are related to the political theme. 
 
 In comparison to Donald Trump, Hillary Clinton has far less references in hiphop songs in total. Interestingly enough, for the positive and neutral bars, the theme that is most prevalent is personal, however in the negative column, the most prevalent theme is political. Even though there are slight differences, I thought it was interesting that Clinton in general had more references to the sexual theme than Trump. 
 
