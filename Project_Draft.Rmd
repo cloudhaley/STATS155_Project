@@ -3,12 +3,13 @@ title: "Project Draft"
 author: "Haley Vien"
 date: "12/3/2019"
 output: html_document
+df_print: paged
 ---
 
 ```{r setup, include=FALSE}
+data("hiphop_cand_lyrics")
 library(fivethirtyeight)
 library(ggplot2)
-data("hiphop_cand_lyrics")
 library(broom)
 library(moderndive)
 library(tidyverse)
@@ -32,24 +33,24 @@ Our response variable is sentiment while our explanatory variables are candidate
 
 # Graphing the Data
 
-```{r}
+```{r, echo=FALSE}
 hiphop_hcdt <- hiphop_cand_lyrics %>% 
   filter(candidate %in% c("Hillary Clinton", "Donald Trump")) %>% 
   mutate(sentiment_negative = ifelse(sentiment == "negative", 1, 0))
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 hiphop_hc <- hiphop_cand_lyrics %>% 
   filter(candidate %in% c("Hillary Clinton"))
 ```
 
-```{r}
+```{r, echo=FALSE}
 hiphop_dt <- hiphop_cand_lyrics %>% 
   filter(candidate %in% c("Donald Trump"))
 ```
 
-```{r}
+```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt) + 
   geom_bar(aes(x = sentiment, fill = theme)) +
   facet_wrap(vars(candidate))
@@ -61,7 +62,7 @@ Interestingly enough, when analyzing the positive bar for Donald Trump, most of 
 
 In comparison to Donald Trump, Hillary Clinton has far less references in hiphop songs in total. Interestingly enough, for the positive and neutral bars, the theme that is most prevalent is personal, however in the negative column, the most prevalent theme is political. Even though there are slight differences, I thought it was interesting that Clinton in general had more references to the sexual theme than Trump. 
 
-```{r}
+```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
    geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5)
 
@@ -76,16 +77,18 @@ However, when looking at the positive *sentiment*, positive references to Trump 
 
 # Fitting models 
 
-```{r}
+
+```{r, echo=FALSE}
 m1 <- glm(sentiment_negative ~ candidate, data = hiphop_hcdt, family = binomial)
 tidy(m1)
 ```
 
 
-```{r}
-glm.cand <- glm(factor(sentiment) ~ candidate,
-            data = hiphop_hcdt,
-           family = binomial(link = "logit"))
+
+```{r, echo=FALSE}
+glm.cand <- glm(sentiment_negative ~ candidate, 
+                data = hiphop_hcdt, 
+                family = binomial)
 
 tidy(glm.cand)
 ```
@@ -95,10 +98,12 @@ tidy(glm.cand)
 *candidateHillaryClinton*: difference in log-odds of positive being the sentiment between Donald Trump and Hillary Clinton 
 
 
-```{r}
-glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
-            data = hiphop_hcdt,
-           family = binomial(link = "logit"))
+
+
+```{r, echo=FALSE}
+glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date, 
+                     data = hiphop_hcdt, 
+                     family = binomial)
 
 tidy(glm.cand.date)
 ```
@@ -111,7 +116,7 @@ tidy(glm.cand.date)
 
 # Confidence Intervals
 
-```{r}
+```{r, echo=FALSE}
 tidy(glm.cand) %>% 
   mutate(lowerCI = estimate - 2*std.error,
          upperCI = estimate + 2*std.error)
@@ -120,7 +125,7 @@ tidy(glm.cand) %>%
 
 This tells us that the plausible range of values for the true difference in sentiment. Since it is between -1.73 and -0.57, the difference in sentiment between Donald Trump and Hillary Clinton appears to be fairly large. 
 
-```{r}
+```{r, echo=FALSE}
 tidy(glm.cand.date) %>% 
   mutate(lowerCI = estimate - 2 * std.error,
          upperCI = estimate + 2*std.error)
