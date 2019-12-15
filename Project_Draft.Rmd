@@ -78,15 +78,9 @@ However, when looking at the positive *sentiment*, positive references to Trump 
 # Fitting models 
 
 ```{r, echo=FALSE}
-m1 <- glm(sentiment_negative ~ candidate, data = hiphop_hcdt, family = binomial)
-tidy(m1)
-```
-
-
-```{r, echo=FALSE}
-glm.cand <- glm(factor(sentiment) ~ candidate,
-            data = hiphop_hcdt,
-           family = binomial(link = "logit"))
+glm.cand <- glm(sentiment_negative ~ candidate, 
+                data = hiphop_hcdt, 
+                family = binomial)
 
 tidy(glm.cand)
 ```
@@ -97,9 +91,9 @@ tidy(glm.cand)
 
 
 ```{r, echo=FALSE}
-glm.cand.date <- glm(factor(sentiment) ~ candidate + album_release_date,
-            data = hiphop_hcdt,
-           family = binomial(link = "logit"))
+glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date, 
+                     data = hiphop_hcdt, 
+                     family = binomial)
 
 tidy(glm.cand.date)
 ```
