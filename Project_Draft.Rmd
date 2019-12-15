@@ -83,7 +83,7 @@ ggplot(data = hiphop_hcdt)+
 
 ```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
-   geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5) +
+   geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5)
 ```
 
 
