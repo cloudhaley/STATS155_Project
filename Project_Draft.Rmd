@@ -1,6 +1,6 @@
 ---
 title: "Project Draft"
-author: "Haley Vien"
+author: "Haley Vien, Cathlyn Liang, Tara Mercene, Maria Arreola"
 date: "12/3/2019"
 output: html_document
 df_print: paged
@@ -39,7 +39,6 @@ hiphop_hcdt <- hiphop_cand_lyrics %>%
   mutate(sentiment_negative = ifelse(sentiment == "negative", 1, 0))
 ```
 
-
 ```{r, echo=FALSE}
 hiphop_hc <- hiphop_cand_lyrics %>% 
   filter(candidate %in% c("Hillary Clinton"))
@@ -56,11 +55,15 @@ ggplot(data = hiphop_hc) +
   ggtitle("Hillary Clinton Sentiment")
 ```
 
+For Hillary Clinton, neutral sentiment ranks first (46-47), followed by negative (28-29) and positive sentiment (16). 
+
 ```{r}
 ggplot(data = hiphop_dt) +
   geom_bar(aes(x=sentiment, fill = sentiment)) +
   ggtitle("Donald Trump Sentiment")
 ```
+
+Donald Trump has more positive sentiment references in songs than Hillary Clinton (and overall more references in songs). Proportionally, his positive sentiment references has a significantly larger count than his neutral and negative sentiment references.
 
 ```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt) + 
@@ -80,6 +83,7 @@ ggplot(data = hiphop_hcdt)+
   ggtitle("Album Release Date v. Sentiment")
 ```
 
+Increase in all sentiments. Positive and neutral sentiment peak at around 2013 whereas negative sentiment peaks later (at around 2015). 
 
 ```{r, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
