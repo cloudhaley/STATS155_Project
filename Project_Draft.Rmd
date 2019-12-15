@@ -116,6 +116,15 @@ tidy(glm.cand)
 
 *candidateHillaryClinton*: difference in log-odds of negative being the sentiment between Donald Trump and Hillary Clinton 
 
+```{r}
+tidy(glm.cand) %>% 
+  select(term, estimate) %>% 
+  mutate(exp_est = exp(estimate))
+```
+
+This means that the odds of getting a negative sentiment for Hillary Clinton is 3.16 times the odds of getting a negative sentiment for Donald Trump. 
+
+
 
 ```{r, echo=FALSE}
 glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date, 
@@ -125,11 +134,25 @@ glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date,
 tidy(glm.cand.date)
 ```
 
+In this model, we are accounting for album_release_date whereas in the previous model, we are only accounting for the candidates. This seems like a better model because the candidates' sentiment changes every year as new albums are released. 
+
+
 *Intercept*: Log-odds of negative being the sentiment for Donald Trump is 120.63.
 
 *candidateHillaryClinton*: Difference in log-odds of negative being the sentiment between Hillary Clinton and Donald Trump. 
 
 *album_release_date*: Difference in log-odds of negative being the sentiment between Hillary Clinton and Donald Trump accounting for *album_release_date*.
+
+```{r}
+tidy(glm.cand.date) %>% 
+  select(term, estimate) %>% 
+  mutate(exp_est = exp(estimate))
+```
+
+This means that an additional album is released each year multiplies the odds of having a negative sentiment by 1.06.
+
+
+
 
 # Confidence Intervals
 
