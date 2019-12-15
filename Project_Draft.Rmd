@@ -22,6 +22,8 @@ The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* pac
 
 Note: For themes, one of the values is NA which represents misc. themes.
 
+Note 2: The references were classified as negative, positive, and neutral by a group of FiveThirtyEight staffers who were interested in hip-hop and quantifying things. If there was a reference that obviously fit into one category, the lead researcher, Allison McCann, would classify it. Additionally, if there was a a trickier reference that was hard to decipher, three people, senior editor Chadwick Matlin, intern Setrige Crawford and McCann, would make the final decision after deliberation. 
+
 # Research Question
 
 When looking at Hillary Clinton and Donald Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
