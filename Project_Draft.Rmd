@@ -166,12 +166,11 @@ tidy(glm.cand.date) %>%
 
 This tells us that the plausible range of values for the true difference in sentiment. Since it is between -0.1093439 and -0.0088, the difference in sentiment between Donald Trump and Hillary Clinton accounting for *album_release_date* appears to be even larger. 
 
-# Hypothesis Tests - Ask Lisa for help on how to conduct hypothesis tests
+# Hypothesis Tests 
 
 ```{r}
 tidy(glm.cand)
 ```
-
 The hypotheses that we are testing for the model *glm.cand* which only looks at the relationship between *candidate* and *sentiment_negative* are:
 
 $$
@@ -182,6 +181,8 @@ $H_0$ is the hypothesis that there is no relationship between *sentiment_negativ
 
 $H_1$ is the hypothesis that there is a relationship between *sentiment_negative* and *candidate. 
 
+Since the p-value for *candidateHillaryClinton* is ~0.0007, which is less than 0.05, meaning that we can reject the null hypothesis $H_0$. This shows that there is a relationship between *candidate* and *sentiment_negative*.
+
 
 ```{r}
 tidy(glm.cand.date)
@@ -190,3 +191,7 @@ tidy(glm.cand.date)
 $H_0$ is the hypothesis that there is no relationship between *album_release_date* and *candidate*. 
 
 $H_1$ is the hypothesis that there is a relationship between *album_release_date* and *candidate. 
+
+Since the p-value for *album_release_date* is 0.02, which is less than 0.05, then we can reject the null hypothesis $H_0$. This shows that there is a relationship between *album_release_date* and *sentiment_negative*.  
+
+# Summary of What We've Learned 
