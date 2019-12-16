@@ -1,12 +1,13 @@
 ---
-title: "Project Draft"
+title: "Final Project"
 author: "Haley Vien, Cathlyn Liang, Tara Mercene, Maria Arreola"
 date: "12/3/2019"
-output: html_document
-df_print: paged
+output: 
+  html_document:
+    df_print: paged
 ---
 
-```{r setup, include=FALSE}
+```{r setup, message = FALSE, include=FALSE}
 data("hiphop_cand_lyrics")
 library(fivethirtyeight)
 library(ggplot2)
@@ -27,7 +28,7 @@ Note 2: The references were classified as negative, positive, and neutral by a g
 
 # Research Question
 
-When looking at Hillary Clinton and Donald Trump’s mentions in hip hop songs, does the relation between candidate or theme and sentiment differ between the two and does that change over time?
+When looking at Hillary Clinton and Donald Trump’s mentions in hip hop songs, does the relation between candidate and sentiment differ between the two and does that change over time?
 
 Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
 
@@ -51,7 +52,7 @@ hiphop_dt <- hiphop_cand_lyrics %>%
   filter(candidate %in% c("Donald Trump"))
 ```
 
-```{r}
+```{r, echo=FALSE}
 ggplot(data = hiphop_hc) +
   geom_bar(aes(x=sentiment, fill = sentiment)) +
   ggtitle("Hillary Clinton Sentiment")
@@ -59,7 +60,7 @@ ggplot(data = hiphop_hc) +
 
 For Hillary Clinton, neutral sentiment ranks first (46-47), followed by negative (28-29) and positive sentiment (16). 
 
-```{r}
+```{r, message = FALSE, echo=FALSE}
 ggplot(data = hiphop_dt) +
   geom_bar(aes(x=sentiment, fill = sentiment)) +
   ggtitle("Donald Trump Sentiment")
@@ -79,7 +80,7 @@ Interestingly enough, when analyzing the positive bar for Donald Trump inside of
 
 In comparison to Donald Trump, Hillary Clinton has far less references in hiphop songs in total. Interestingly enough, for the positive and neutral bars, the theme that is most prevalent is personal, however in the negative column, the most prevalent theme is political. Even though there are slight differences, I thought it was interesting that Clinton in general had more references to the sexual theme than Trump. 
 
-```{r, echo=FALSE}
+```{r, message = FALSE, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
    geom_density_ridges(aes(x = album_release_date,  y = sentiment), alpha = .5) +
   ggtitle("Album Release Date v. Sentiment")
@@ -87,7 +88,7 @@ ggplot(data = hiphop_hcdt)+
 
 Increase in all sentiments. Positive and neutral sentiment peak at around 2013 whereas negative sentiment peaks later (at around 2015). 
 
-```{r, echo=FALSE}
+```{r, message = FALSE, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
    geom_density_ridges(aes(x = album_release_date, fill = candidate, y = sentiment), alpha = .5)
 ```
@@ -104,7 +105,7 @@ However, when looking at the positive *sentiment*, positive references to Trump 
 Note: *glm.cand* and *glm.cand.date* are our models that we will use to predict for negative *sentiment*. Neutral and positive *sentiment* are grouped together to make interpreting the model simpler. 
 
 
-```{r, echo=FALSE}
+```{r, message = FALSE, echo=FALSE}
 glm.cand <- glm(sentiment_negative ~ candidate, 
                 data = hiphop_hcdt, 
                 family = binomial)
@@ -123,7 +124,7 @@ The coefficient of *candidateHillaryClinton*, 1.15, represents the difference in
 The exponentiated estimate for *candidateHillaryClinton* means that the odds of getting a negative sentiment for Hillary Clinton is 3.16 times the odds of getting a negative sentiment for Donald Trump. 
 
 
-```{r, echo=FALSE}
+```{r, message = FALSE, echo=FALSE}
 glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date, 
                      data = hiphop_hcdt, 
                      family = binomial)
@@ -147,35 +148,16 @@ The coefficient for *album_release_date*, 0.06, represents a one unit increase i
 
 The *album_release_date*'s exponentiated estimate means that an additional album is released each year multiplies the odds of having a negative sentiment by 1.06.
 
-# Confidence Intervals
-
-```{r, echo=FALSE}
-tidy(glm.cand) %>% 
-  mutate(lowerCI = estimate - 2*std.error,
-         upperCI = estimate + 2*std.error)
-
-```
-
-This tells us that the plausible range of values for the true difference in sentiment. Since it is between -1.73 and -0.57, the difference in sentiment between Donald Trump and Hillary Clinton appears to be fairly large. 
-
-```{r, echo=FALSE}
-tidy(glm.cand.date) %>% 
-  mutate(lowerCI = estimate - 2 * std.error,
-         upperCI = estimate + 2*std.error)
-```
-
-This tells us that the plausible range of values for the true difference in sentiment. Since it is between -0.1093439 and -0.0088, the difference in sentiment between Donald Trump and Hillary Clinton accounting for *album_release_date* appears to be even larger. 
-
 # Hypothesis Tests 
 
-```{r}
+```{r, message = FALSE, echo=FALSE}
 tidy(glm.cand)
 ```
 The hypotheses that we are testing for the model *glm.cand* which only looks at the relationship between *candidate* and *sentiment_negative* are:
 
 $$
 H_0: \beta_1 = 0 \\
-H_1: \beta_1 \ne 0 \text{()}
+H_1: \beta_1 \ne 0 
 $$
 $H_0$ is the hypothesis that there is no relationship between *sentiment_negative* and *candidate*. 
 
@@ -184,7 +166,7 @@ $H_1$ is the hypothesis that there is a relationship between *sentiment_negative
 Since the p-value for *candidateHillaryClinton* is ~0.0007, which is less than 0.05, meaning that we can reject the null hypothesis $H_0$. This shows that there is a relationship between *candidate* and *sentiment_negative*.
 
 
-```{r}
+```{r, message = FALSE, echo=FALSE}
 tidy(glm.cand.date)
 ```
 
@@ -195,3 +177,19 @@ $H_1$ is the hypothesis that there is a relationship between *album_release_date
 Since the p-value for *album_release_date* is 0.02, which is less than 0.05, then we can reject the null hypothesis $H_0$. This shows that there is a relationship between *album_release_date* and *sentiment_negative*.  
 
 # Summary of What We've Learned 
+
+**Research Question Answer**
+
+From the graphs and models above, it is clear that the *candidate* does have an effect on *sentiment* and that is shown through the barplots the above. It is also clear that *album_release_date* also has an effect on *sentiment*. This can be seen more through our ggridges plot.  
+
+**Why Is This Interesting?**
+
+Throughout our research we have seen how politics affects pop culture, specifically with these two candidates. Especially with the new presidential election coming up in 2020, it will be interesting to observe how current POTUS candidates will affect the hip hop songs coming out in the next year or so. 
+
+**Pitfalls**
+
+(@) The references that were considered to Hillary Clinton were not specifically about her but they also included references to her family (ex: Bill Clinton) while for Trump, it was more geared directly towards him and his brand. 
+
+(@) Having to deal with more subjective data since *sentiment* was determined on "hip hop experts" opinions.
+
+(@) The original data set begins tracing songs from 1989 to 2016. 
