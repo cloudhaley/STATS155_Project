@@ -115,11 +115,8 @@ tidy(glm.cand) %>%
   mutate(exp_est = exp(estimate))
 ```
 
-The intercept, -1.93, represents the log odds of Donald Trump being referenced in a negative sentiment.
 
 The exponentiated estimate for the intercept, 0.15, represents the odds of Trump being referenced in a negative sentiment.
-
-The coefficient of *candidateHillaryClinton*, 1.15, represents the difference in log odds of having a negative seniment between Donald Trump and Hillary Clinton. 
 
 The exponentiated estimate for *candidateHillaryClinton* means that the odds of getting a negative sentiment for Hillary Clinton is 3.16 times the odds of getting a negative sentiment for Donald Trump. 
 
@@ -136,15 +133,9 @@ tidy(glm.cand.date) %>%
 
 In this model, we are accounting for *album_release_date* whereas in the previous model, we are only accounting for the *candidate*s. This seems like a better model because the *candidates*' *sentiment* changes every year as new albums are released. 
 
-The coefficient for intercept, -120.63, represents the log odds of having negative sentiment for Donald Trump, when *album_release_date* is 0. 
-
 The exponentiated estimate for intercept, 4.09, represents the odds of having negative sentiment for Donald Trump, when *album_release_date* is 0. 
 
-The coefficient for *candidateHillaryClinton*, 1.24, represents the difference in log odds of having negative sentiment between Donald Trump and Hillary Clinton, while accounting for *album_release_date*. 
-
 The exponentiated estimate for *candidateHillaryClinton*, 3.45, represents the odds of having negative sentiment for Hillary Clinton is 3.45 times the odds of having negative sentiment for Donald Trump, accounting for *album_release_date*.
-
-The coefficient for *album_release_date*, 0.06, represents a one unit increase in *album_release_date*, increases the log odds of having negative sentiment by 0.06.
 
 The *album_release_date*'s exponentiated estimate means that an additional album is released each year multiplies the odds of having a negative sentiment by 1.06.
 
