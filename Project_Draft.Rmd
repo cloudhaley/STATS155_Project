@@ -165,7 +165,7 @@ The exponentiated estimate for intercept, 4.09, represents the odds of having ne
 
 After  accounting for *album_release_date*, the exponentiated estimate for *candidateHillaryClinton* represents that the odds of Hillary Clinton having negative sentiment is 3.45 times the odds of Donald Trump having negative sentiment.
 
-The *album_release_date*'s exponentiated estimate means that an additional album is released each year, this multiplies the odds of having a negative sentiment by 1.06.
+The *album_release_date*'s exponentiated estimate means that as *album_release_date* increases by one unit, the odds of having a negative sentiment is multiplied by 1.06.
 
 This seems like a better model because the *candidates*' *sentiment* changes every year as new albums are released. 
 
