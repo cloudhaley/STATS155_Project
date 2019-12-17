@@ -20,7 +20,7 @@ library(ggridges)
 
 # The Data
 
-The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* package. This data represents when hiphop songs referenced POTUS candidates in 2016. There are 377 rows of data and 8 variables. The 8 variables are the *candidate* referenced, the *song* name, the *artist*, the *sentiment* of the lyric, the *theme* of the lyric, the *album_release_date*, the *line* referencing the candidate, and the *url* to the song. This data was collected from [Genius](https://genius.com/).
+The data we will be using is *hiphop_cand_lyrics* from the *fivethirtyeight* package. This data represents hiphop songs that referenced POTUS candidates in 2016. There are 377 rows of data and 8 variables. The 8 variables are the *candidate* referenced, the *song* name, the *artist*, the *sentiment* of the lyric, the *theme* of the lyric, the *album_release_date*, the *line* referencing the candidate, and the *url* to the song. This data was collected from [Genius](https://genius.com/).
 
 Note: For themes, one of the values is NA which represents misc. themes.
 
@@ -30,11 +30,11 @@ Note 2: The references were classified as negative, positive, and neutral by a g
 
 When looking at Hillary Clinton and Donald Trump’s mentions in hip hop songs, does the relation between candidate and sentiment differ between the two and does that change over time?
 
-Our response variable is sentiment while our explanatory variables are candidate, theme, and the album's release date. 
+Our response variable is sentiment while our explanatory variables are candidate and the album's release date. 
 
 # Graphing the Data
 
-Note: *hiphop_hcdt* is *hiphop_cand_lyrics* but it has been filtered to only show the results of Donald Trumpy and Hillary Clinton and is the data we will be using from now on. For some of the graphs we also use *hiphop_hc* which is the original data filtered to only include Hillary Clinton's results and *hiphop_dt* does the same but filters for Donald Trumps' results. 
+Note: *hiphop_hcdt* is *hiphop_cand_lyrics* but it has been filtered to only show the results of Donald Trump and Hillary Clinton and is the data we will be using from now on. For some of the graphs we also use *hiphop_hc* which is the original data filtered to only include Hillary Clinton's results and *hiphop_dt* does the same but filters for Donald Trump's results. 
 
 ```{r, echo=FALSE}
 hiphop_hcdt <- hiphop_cand_lyrics %>% 
@@ -78,7 +78,7 @@ The graph above shows the sentiment of the songs that mention Donald Trump or Hi
 
 Interestingly enough, when analyzing the positive bar for Donald Trump inside of this graph, most of the lyrics that mention him in a positive *sentiment* are related to Trump's hotel and money. The amount of times artists refer to these 2 themes almost quadruples the amount of times Trump is referred to negatively. When looking at the negative bar, most of the negative references are related to the political theme. 
 
-In comparison to Donald Trump, Hillary Clinton has far less references in hiphop songs in total. Interestingly enough, for the positive and neutral bars, the theme that is most prevalent is personal, however in the negative column, the most prevalent theme is political. Even though there are slight differences, I thought it was interesting that Clinton in general had more references to the sexual theme than Trump. 
+In comparison to Donald Trump, Hillary Clinton has far less references in hiphop songs in total. Interestingly enough, for the positive and neutral bars, the theme that is most prevalent is personal, however in the negative column, the most prevalent theme is political. Even though there are slight differences, we thought it was interesting that Clinton in general had more references to the sexual theme than Trump. 
 
 ```{r, message = FALSE, echo=FALSE}
 ggplot(data = hiphop_hcdt)+
@@ -100,48 +100,13 @@ Between 2010 and 2020, the negative *sentiment* towards Donald Trump drastically
 
 However, when looking at the positive *sentiment*, positive references to Trump peak a few years before 2015 and then decline. However, Clinton begins to have more positive references begining around 2005 and this peaks around 2010 and consistently stays at that peak until around 2016.  
 
-# Fitting models 
-
-Note: *glm.cand* and *glm.cand.date* are our models that we will use to predict for negative *sentiment*. Neutral and positive *sentiment* are grouped together to make interpreting the model simpler. 
-
+# Hypothesis Tests 
 
 ```{r, message = FALSE, echo=FALSE}
 glm.cand <- glm(sentiment_negative ~ candidate, 
                 data = hiphop_hcdt, 
                 family = binomial)
 
-tidy(glm.cand) %>% 
-  select(term, estimate) %>% 
-  mutate(exp_est = exp(estimate))
-```
-
-
-The exponentiated estimate for the intercept, 0.15, represents the odds of Trump being referenced in a negative sentiment.
-
-The exponentiated estimate for *candidateHillaryClinton* means that the odds of getting a negative sentiment for Hillary Clinton is 3.16 times the odds of getting a negative sentiment for Donald Trump. 
-
-
-```{r, message = FALSE, echo=FALSE}
-glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date, 
-                     data = hiphop_hcdt, 
-                     family = binomial)
-
-tidy(glm.cand.date) %>% 
-  select(term, estimate) %>% 
-  mutate(exp_est = exp(estimate))
-```
-
-In this model, we are accounting for *album_release_date* whereas in the previous model, we are only accounting for the *candidate*s. This seems like a better model because the *candidates*' *sentiment* changes every year as new albums are released. 
-
-The exponentiated estimate for intercept, 4.09, represents the odds of having negative sentiment for Donald Trump, when *album_release_date* is 0. 
-
-The exponentiated estimate for *candidateHillaryClinton*, 3.45, represents the odds of having negative sentiment for Hillary Clinton is 3.45 times the odds of having negative sentiment for Donald Trump, accounting for *album_release_date*.
-
-The *album_release_date*'s exponentiated estimate means that an additional album is released each year multiplies the odds of having a negative sentiment by 1.06.
-
-# Hypothesis Tests 
-
-```{r, message = FALSE, echo=FALSE}
 tidy(glm.cand)
 ```
 The hypotheses that we are testing for the model *glm.cand* which only looks at the relationship between *candidate* and *sentiment_negative* are:
@@ -158,20 +123,57 @@ Since the p-value for *candidateHillaryClinton* is ~0.0007, which is less than 0
 
 
 ```{r, message = FALSE, echo=FALSE}
+glm.cand.date <- glm(sentiment_negative ~ candidate + album_release_date, 
+                     data = hiphop_hcdt, 
+                     family = binomial)
+
 tidy(glm.cand.date)
 ```
 
 $H_0$ is the hypothesis that there is no relationship between *album_release_date* and *candidate*. 
 
-$H_1$ is the hypothesis that there is a relationship between *album_release_date* and *candidate. 
+$H_1$ is the hypothesis that there is a relationship between *album_release_date* and *candidate*. 
 
 Since the p-value for *album_release_date* is 0.02, which is less than 0.05, then we can reject the null hypothesis $H_0$. This shows that there is a relationship between *album_release_date* and *sentiment_negative*.  
+
+# Fitting models 
+
+Note: *glm.cand* and *glm.cand.date* are our models that we will use to predict for negative *sentiment*. Neutral and positive *sentiment* are grouped together to make interpreting the model simpler. 
+
+
+```{r, message = FALSE, echo=FALSE}
+tidy(glm.cand) %>% 
+  select(term, estimate) %>% 
+  mutate(exp_est = exp(estimate))
+```
+
+
+The exponentiated estimate for the intercept, 0.15, represents the odds of Trump being referenced in a negative sentiment.
+
+The exponentiated estimate for *candidateHillaryClinton* means that the odds of getting a negative sentiment for Hillary Clinton is 3.16 times the odds of getting a negative sentiment for Donald Trump. 
+
+
+```{r, message = FALSE, echo=FALSE}
+tidy(glm.cand.date) %>% 
+  select(term, estimate) %>% 
+  mutate(exp_est = exp(estimate))
+```
+
+In this model, we are accounting for *album_release_date* as well as *candidate* whereas in the previous model, we are only accounting for *candidate*. 
+
+The exponentiated estimate for intercept, 4.09, represents the odds of having negative sentiment for Donald Trump, when *album_release_date* is 0. 
+
+After  accounting for *album_release_date*, the exponentiated estimate for *candidateHillaryClinton* represents that the odds of Hillary Clinton having negative sentiment is 3.45 times the odds of Donald Trump having negative sentiment.
+
+The *album_release_date*'s exponentiated estimate means that an additional album is released each year, this multiplies the odds of having a negative sentiment by 1.06.
+
+This seems like a better model because the *candidates*' *sentiment* changes every year as new albums are released. 
 
 # Summary of What We've Learned 
 
 **Research Question Answer**
 
-From the graphs and models above, it is clear that the *candidate* does have an effect on *sentiment* and that is shown through the barplots the above. It is also clear that *album_release_date* also has an effect on *sentiment*. This can be seen more through our ggridges plot.  
+From the graphs and models above, it is clear that the *candidate* does have an effect on *sentiment* and that is shown through the barplots above. It is also clear that *album_release_date* also has an effect on *sentiment*. This can be seen more through our ggridges plot.  
 
 **Why Is This Interesting?**
 
